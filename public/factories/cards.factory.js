@@ -12,10 +12,17 @@ angular.module('flashCards')
       },
 
       getByCategory: function(category) {
-        return this.getAll({ 
+        return this.getAll({
           params: {
-            category: category 
+            category: category
           }
+        })
+      },
+
+      createNewCard: function(newCard) {
+        console.log(newCard)
+        return $http.post('/cards', newCard).then(function(newCard) {
+          console.log('newCard.data:', newCard.data);
         })
       }
     }

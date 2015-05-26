@@ -12,7 +12,19 @@
             Correct: {{ score.correct }}
             Incorrect: {{ score.incorrect }}
         </div>
-
+        <div ng-controller="NewCardController">
+        <pre>{{ newCard | json }}</pre>
+            Question<input type="text" ng-model="newCard.question"></input>
+            Category<input type="text" ng-model="newCard.category"></input>
+            Answer 1<input type="text" ng-model="newCard.answers[0].text"></input>
+            Correct?<input type="checkbox" ng-model="newCard.answers[0].correct"></input>
+            Answer 2<input type="text" ng-model="newCard.answers[1].text"></input>
+            Correct?<input type="checkbox" ng-model="newCard.answers[1].correct"></input>
+            Answer 3<input type="text" ng-model="newCard.answers[2].text"></input>
+            Correct?<input type="checkbox" ng-model="newCard.answers[2].correct"></input>
+            <button ng-click="sendNewCard(newCard)">Create New Flashcard</button>
+        </div>
+        <br>
         <div ng-controller="MainController">
             <div id="category-buttons">
                 <button
@@ -54,6 +66,7 @@
         <script src="directives/flashcard/flashcard.js"></script>
     	<script src="directives/border-on-hover/border-on-hover.js"></script>
         <script src="main.controller.js"></script>
+        <script src="controllers/NewCardController.js"></script>
         <script src="factories/cards.factory.js"></script>
         <script src="factories/score.factory.js"></script>
         <script src="controllers/score.controller.js"></script>

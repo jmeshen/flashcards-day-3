@@ -13,16 +13,41 @@
             Incorrect: {{ score.incorrect }}
         </div>
         <div ng-controller="NewCardController">
-        <pre>{{ newCard | json }}</pre>
-            Question<input type="text" ng-model="newCard.question"></input>
-            Category<input type="text" ng-model="newCard.category"></input>
-            Answer 1<input type="text" ng-model="newCard.answers[0].text"></input>
-            Correct?<input type="checkbox" ng-model="newCard.answers[0].correct"></input>
-            Answer 2<input type="text" ng-model="newCard.answers[1].text"></input>
-            Correct?<input type="checkbox" ng-model="newCard.answers[1].correct"></input>
-            Answer 3<input type="text" ng-model="newCard.answers[2].text"></input>
-            Correct?<input type="checkbox" ng-model="newCard.answers[2].correct"></input>
-            <button ng-click="sendNewCard(newCard)">Create New Flashcard</button>
+        <!-- <pre>{{ newCard | json }}</pre> -->
+        <!-- <pre>{{ newCardForm.question | json }}</pre> -->
+        <!-- <pre>{{ newCardForm.answer1 | json }}</pre> -->
+        <!-- <pre>{{ newCardForm.answer2 | json }}</pre> -->
+        <!-- <pre>{{ newCardForm.answer3 | json }}</pre> -->
+            <form name="newCardForm" ng-submit="newCardForm.$valid && sendNewCard(newCard)">
+                Question<input type="text" name="question" required ng-minlength="15" ng-model="newCard.question"></input>
+                <br>
+                Category<input type="text" name="category" required ng-model="newCard.category"></input>
+                <br>
+               <!--  <ng-form name = 'etcs'>
+                <div ng-repeat="answer in newCard.answers">
+                    Answer<input type="text" name="answer" ng-maxlength="40" ng-model="answer.text"></input>
+                    Correct?<input type="checkbox" ng-model="answer.correct"></input>
+                </div>
+                </ng-form> -->
+
+                Answer 1<input type="text" name="answer1" ng-maxlength="40" ng-model="newCard.answers[0].text"></input>
+                Correct?<input type="checkbox" ng-model="newCard.answers[0].correct"></input>
+                <br>
+                Answer 2<input type="text" name="answer2" ng-maxlength="40" ng-model="newCard.answers[1].text"></input>
+                Correct?<input type="checkbox" ng-model="newCard.answers[1].correct"></input>
+                <br>
+                Answer 3<input type="text" name="answer3" ng-maxlength="40" ng-model="newCard.answers[2].text"></input>
+                Correct?<input type="checkbox" ng-model="newCard.answers[2].correct"></input>
+                <br>
+                <error-message ng-show="newCardForm.question.$error.required && newCardForm.question.$touched">Question is a required field.</error-message>
+                <error-message ng-show="newCardForm.category.$error.required && newCardForm.category.$touched">Category is a required field.</error-message>
+                <error-message ng-show="newCardForm.question.$error.minlength && newCardForm.question.$touched">Question is too short.</error-message>
+                <error-message ng-show="newCardForm.answer1.$error.maxlength && newCardForm.answer1.$touched">Answer is too long.</error-message>
+                <error-message ng-show="newCardForm.answer2.$error.maxlength && newCardForm.answer2.$touched">Answer is too long.</error-message>
+                <error-message ng-show="newCardForm.answer3.$error.maxlength && newCardForm.answer3.$touched">Answer is too long.</error-message>
+                <br><br>
+                <button type="submit">Create New Flashcard</button>
+            </form>
         </div>
         <br>
         <div ng-controller="MainController">

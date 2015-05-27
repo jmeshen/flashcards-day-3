@@ -14,6 +14,9 @@ angular.module('flashCards')
     console.log(newCard)
     Card.createNewCard(newCard).then(function(response) {
       console.log(response);
+        $scope.newCard.question = null;
+        $scope.newCard.category = null;
+        $scope.newCard.answers = [];
     })
   }
 })

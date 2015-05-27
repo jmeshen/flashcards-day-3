@@ -23,6 +23,7 @@ angular.module('flashCards')
         console.log(newCard)
         return $http.post('/cards', newCard).then(function(newCard) {
           console.log('newCard.data:', newCard.data);
+          return newCard.data
         })
       }
     }

@@ -50,6 +50,24 @@ app.get('/cards', function (req, res) {
 
 });
 
+// app.get('/cards/:flashCardId', function(req, res){
+//     console.log(req.params.flashCardId)
+//     FlashCardModel.find({_id: req.params.flashCardId}, function(err, card) {
+//         console.log(card)
+//         res.send(card);
+//     })
+// })
+
+app.put('/cards/:flashCardId', function(req, res){
+    console.log(req.params.flashCardId)
+    FlashCardModel.find({_id: req.params.flashCardId}, function(err, card) {
+        console.log(card)
+        res.send(card);
+    })
+})
+
+
+
 app.post('/cards', function (req, res) {
     console.log('cards req:', req.body)
     var flashCard = new FlashCardModel({
@@ -58,5 +76,8 @@ app.post('/cards', function (req, res) {
         'answers': req.body.answers
     })
     flashCard.save();
-    res.redirect('/');
+    res.send(flashCard);
 })
+
+
+

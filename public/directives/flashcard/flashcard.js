@@ -14,3 +14,14 @@ app.directive('flashCard', function(Score) {
     }
   };
 })
+
+
+app.directive('flashcardForm', function(){
+  return {
+    restrict: 'E',
+    templateUrl: 'directives/flashcard/form.html',
+    link: function(scope, element, attrs) {
+      // idk
+    }
+  }
+})

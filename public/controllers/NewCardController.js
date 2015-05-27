@@ -1,5 +1,5 @@
 angular.module('flashCards')
-  .controller('NewCardController', function($scope, Card) {
+  .controller('NewCardController', function($scope, Card, $rootScope) {
   $scope.newCard = {
     question: null,
     category: null,
@@ -11,12 +11,22 @@ angular.module('flashCards')
   }
 
   $scope.sendNewCard = function(newCard) {
-    console.log(newCard)
+    console.log("this is Card factory", Card);
+    // console.log(newCard)
     Card.createNewCard(newCard).then(function(response) {
-      console.log(response);
+      console.log('this is response', response);
+
+
+      // console.log("this is $scope.newCard", $scope);
+
         $scope.newCard.question = null;
         $scope.newCard.category = null;
         $scope.newCard.answers = [];
+        // $scope.$digest();
+        $rootScope.$broadcast('newCard', response);
+        // $scope.flashCards.push(response);
     })
+
+
   }
 })

@@ -1,4 +1,4 @@
-app.controller('MainController', function ($scope, Card, Score) {
+app.controller('MainController', function ($scope, Card, Score, $rootScope) {
   $scope.done = false;
   $scope.categories = [
    'MongoDB',
@@ -23,9 +23,15 @@ app.controller('MainController', function ($scope, Card, Score) {
         Score.correct = 0
         Score.incorrect = 0
         $scope.flashCards = cards
+
       })
   }
   $scope.reset()
+
+  $rootScope.$on('newCard', function(event, data) {
+    $scope.flashCards.push(data);
+  })
+
 });
 
 

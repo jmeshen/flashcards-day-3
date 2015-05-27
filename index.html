@@ -21,7 +21,12 @@
             <form name="newCardForm" ng-submit="newCardForm.$valid && sendNewCard(newCard)">
                 Question<input type="text" name="question" required ng-minlength="15" ng-model="newCard.question"></input>
                 <br>
-                Category<input type="text" name="category" required ng-model="newCard.category"></input>
+                Category<select type="text" name="category" required ng-model="newCard.category">
+                    <option>MongoDB</option>
+                    <option>Express</option>
+                    <option>Angular</option>
+                    <option>Node</option>
+                </select>
                 <br>
                <!--  <ng-form name = 'etcs'>
                 <div ng-repeat="answer in newCard.answers">
@@ -51,6 +56,8 @@
         </div>
         <br>
         <div ng-controller="MainController">
+
+
             <div id="category-buttons">
                 <button
                   ng-repeat="category in categories"
